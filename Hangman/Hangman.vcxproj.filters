@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{9ba442d2-4cdf-48f1-92a0-da5db2043af2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman">
+      <UniqueIdentifier>{944f7637-75b2-4d18-9bbb-62461c34d33b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman\Data">
+      <UniqueIdentifier>{4126e5ff-87cd-4e3a-9b9e-aad33b67a5e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman\Database">
+      <UniqueIdentifier>{86b48243-a2e9-4a80-8a9d-fe2ee3a23329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman\Editor">
+      <UniqueIdentifier>{1f3c4d36-f01f-4065-9600-74034c9b739d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman\Game">
+      <UniqueIdentifier>{72854aa8-d8e2-4ab0-b498-ed702ae48e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman\Game\Map">
+      <UniqueIdentifier>{76af13e4-97ac-4efc-b651-809dda03fb88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman\Menu">
+      <UniqueIdentifier>{6ccd8abf-138f-4fe2-9e19-d3895c08011b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hangman\Game\Logic">
+      <UniqueIdentifier>{6e529992-cde3-4785-8508-16153c7f71a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman">
+      <UniqueIdentifier>{cdfa56ca-b884-45a0-91ee-495a80b2d885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman\Database">
+      <UniqueIdentifier>{566cd997-9afe-4336-99b7-6f5c0c7ddf90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman\Database\Editor">
+      <UniqueIdentifier>{9ccafb03-d2d2-4956-96de-bce6f3cdf9a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman\Game">
+      <UniqueIdentifier>{c2f4b4fc-3ab2-41c0-9a51-c41ffd6b51e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman\Game\Map">
+      <UniqueIdentifier>{be1c7b26-9ce4-4a21-9019-1375b46b88f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman\Menu">
+      <UniqueIdentifier>{815ceda7-41ef-458e-b513-5a9764d4ff53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman\UI">
+      <UniqueIdentifier>{30f750b3-98bc-4d03-b1a6-3588001edb1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hangman\Game\Logic">
+      <UniqueIdentifier>{fe08ce58-aae5-4bd7-b6bb-33dde2b512ed}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\UI\Output.cpp">
+      <Filter>Source Files\Hangman\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\UI\Input.cpp">
+      <Filter>Source Files\Hangman\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Menu\Menu.cpp">
+      <Filter>Source Files\Hangman\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Logic\Logic.cpp">
+      <Filter>Source Files\Hangman\Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Map\HangmanDisplayer.cpp">
+      <Filter>Source Files\Hangman\Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Map\PlayField.cpp">
+      <Filter>Source Files\Hangman\Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Map\WordTransformerUnderline.cpp">
+      <Filter>Source Files\Hangman\Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Logic\Linguist.cpp">
+      <Filter>Source Files\Hangman\Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Logic\WordChecker.cpp">
+      <Filter>Source Files\Hangman\Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Logic\Replacer.cpp">
+      <Filter>Source Files\Hangman\Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Settings.cpp">
+      <Filter>Source Files\Hangman\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Database\Reader.cpp">
+      <Filter>Source Files\Hangman\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Database\FileChecker.cpp">
+      <Filter>Source Files\Hangman\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Editor\WordsEditor.cpp">
+      <Filter>Source Files\Hangman\Database\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Database\Writer.cpp">
+      <Filter>Source Files\Hangman\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Logic\Grader.cpp">
+      <Filter>Source Files\Hangman\Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\Game\Logic\IdenticalUmlaut.cpp">
+      <Filter>Source Files\Hangman\Game\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Hangman\HangmanApp.cpp">
+      <Filter>Source Files\Hangman</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Hangman\UI\Input.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\UI\Output.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Data\CharBool.h">
+      <Filter>Header Files\Hangman\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Data\IntBool.h">
+      <Filter>Header Files\Hangman\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Data\StringBool.h">
+      <Filter>Header Files\Hangman\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Logic\Logic.h">
+      <Filter>Header Files\Hangman\Game\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Menu\Menu.h">
+      <Filter>Header Files\Hangman\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Map\PlayField.h">
+      <Filter>Header Files\Hangman\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Map\HangmanDisplayer.h">
+      <Filter>Header Files\Hangman\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Map\WordTransformerUnderline.h">
+      <Filter>Header Files\Hangman\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Data\Word.h">
+      <Filter>Header Files\Hangman\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Logic\WordChecker.h">
+      <Filter>Header Files\Hangman\Game\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Logic\Linguist.h">
+      <Filter>Header Files\Hangman\Game\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Data\Umlaute.h">
+      <Filter>Header Files\Hangman\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Logic\Replacer.h">
+      <Filter>Header Files\Hangman\Game\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Settings.h">
+      <Filter>Header Files\Hangman\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Data\StringIntBool.h">
+      <Filter>Header Files\Hangman\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Editor\WordsEditor.h">
+      <Filter>Header Files\Hangman\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Data\ArrayInt.h">
+      <Filter>Header Files\Hangman\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Database\Reader.h">
+      <Filter>Header Files\Hangman\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Database\Writer.h">
+      <Filter>Header Files\Hangman\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Database\FileChecker.h">
+      <Filter>Header Files\Hangman\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Logic\Grader.h">
+      <Filter>Header Files\Hangman\Game\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\HangmanApp.h">
+      <Filter>Header Files\Hangman</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Hangman\Game\Logic\IdenticalUmlaut.h">
+      <Filter>Header Files\Hangman\Game\Logic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\Words.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
