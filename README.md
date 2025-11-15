@@ -1,1 +1,1 @@
-# Hangman_2
+# Hangman
