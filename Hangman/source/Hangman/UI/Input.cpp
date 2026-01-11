@@ -1,73 +1,145 @@
 #include "Hangman/UI/Input.h"
+
 #include <iostream>
+#include <string>
 #include <vector>
+#include <limits>
+#include <cwctype>
+#include <stdexcept>
+
 #define NOMINMAX
 #include <Windows.h>
-#include <limits>
 
-namespace Messerli::Hangman::UI{
-
-Messerli::Hangman::Data::StringBool Input::Get() const
+namespace
 {
-    std::string word_utf8;
-    if (!std::getline(std::cin >> std::ws, word_utf8)) {
-        const size_t bufferSize = 1000;
-        std::cin.clear();
-        std::cin.ignore(bufferSize, '\n');
-        return Data::StringBool {L"", false};
-    }
-    std::wstring word;
-    int size_needed = MultiByteToWideChar(CP_UTF8, 0, word_utf8.c_str(), (int)word_utf8.length(), NULL, 0);
+    // Warum so viele Hilfsfunktionen? -> Weil Windows je nach Umgebung (echte Konsole vs. IDE/Redirect), Codepage (CP850/CP1252/UTF-8) und Stream-Typ (wcin/cin) sehr unterschiedlich mit Umlauten umgeht; deshalb kapsele ich Erkennung, Lesen (Console-UTF16 oder Fallback-Bytes) und Konvertierung getrennt, um in beiden Fällen zuverlässig Unicode zu bekommen.
 
-    if (size_needed > 0) {
-        word.resize(size_needed);
-        MultiByteToWideChar(CP_UTF8, 0, word_utf8.c_str(), (int)word_utf8.length(), &word[0], size_needed);
+    bool IsRealConsoleInput()
+    {
+        DWORD mode = 0;
+        HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+        return (hIn != INVALID_HANDLE_VALUE) && (hIn != nullptr) && GetConsoleMode(hIn, &mode);
     }
 
-    if (word.empty() && !word_utf8.empty()) {
-        return Data::StringBool {L"", false};
+    std::wstring ReadConsoleLineW()
+    {
+        HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+
+        std::wstring out;
+        std::vector<wchar_t> buf(256);
+
+        while (true)
+        {
+            DWORD read = 0;
+            BOOL ok = ReadConsoleW(hIn, buf.data(), static_cast<DWORD>(buf.size()), &read, nullptr);
+            if (!ok || read == 0)
+            {
+                return L"";
+            }
+
+            out.append(buf.data(), buf.data() + read);
+
+            if (out.find(L'\n') != std::wstring::npos)
+                break;
+
+        }
+
+        const size_t cut = out.find_first_of(L"\r\n");
+        if (cut != std::wstring::npos)
+            out.resize(cut);
+
+        return out;
     }
 
-    return {word, true};
+    std::wstring ConvertBytesToWide(const std::string& s, UINT cp, DWORD flags)
+    {
+        if (s.empty()) return L"";
+
+        int needed = MultiByteToWideChar(cp, flags, s.data(), static_cast<int>(s.size()), nullptr, 0);
+        if (needed <= 0) return L"";
+
+        std::wstring w(static_cast<size_t>(needed), L'\0');
+        MultiByteToWideChar(cp, flags, s.data(), static_cast<int>(s.size()), w.data(), needed);
+        return w;
+    }
+
+    std::wstring ReadLineFallback()
+    {
+        std::string bytes;
+        if (!std::getline(std::cin >> std::ws, bytes))
+            return L"";
+
+        std::wstring w = ConvertBytesToWide(bytes, CP_UTF8, MB_ERR_INVALID_CHARS);
+
+        if (w.empty() && !bytes.empty())
+            w = ConvertBytesToWide(bytes, GetConsoleCP(), 0);
+
+        if (w.empty() && !bytes.empty())
+            w = ConvertBytesToWide(bytes, CP_ACP, 0);
+
+        return w;
+    }
+
+    std::wstring ReadLineRobust()
+    {
+        return IsRealConsoleInput() ? ReadConsoleLineW() : ReadLineFallback();
+    }
+
+    wchar_t FirstNonSpaceChar(const std::wstring& s)
+    {
+        size_t i = 0;
+        while (i < s.size() && iswspace(s[i])) ++i;
+        return (i < s.size()) ? s[i] : L'\0';
+    }
 }
-Data::CharBool Input::GetLetter() const
+
+namespace Messerli::Hangman::UI
 {
-    std::string s_utf8;
-    if (!std::getline(std::cin >> std::ws, s_utf8)) {
-        const size_t bufferSize = 1000;
-        std::cin.clear();
-        std::cin.ignore(bufferSize, '\n');
-        return Data::CharBool {L'-', false};
-    }
-    std::wstring w;
-    int size_needed = MultiByteToWideChar(CP_UTF8, 0,
-        s_utf8.c_str(), (int)s_utf8.length(),
-        NULL, 0);
-    if (size_needed <= 0) {
-        return Data::CharBool {L'-', false};
-    }
-    w.resize(size_needed);
-    MultiByteToWideChar(CP_UTF8, 0,
-        s_utf8.c_str(), (int)s_utf8.length(),
-        &w[0], size_needed);
+    Messerli::Hangman::Data::StringBool Input::Get() const
+    {
+        std::wstring word = ReadLineRobust();
 
-    if (w.empty()) {
-        return Data::CharBool {L'-', false};
+        if (word.empty())
+            return { L"", false };
+
+        return { word, true };
     }
 
-    return Data::CharBool {w[0], true};
-}
-Data::IntBool Input::GetNumber() const
-{
-    int Number;
-    std::cin >> Number;
-    if (std::cin.fail()) {
-        const size_t bufferSize = 1000;
-        std::cin.clear();
-        std::cin.ignore(bufferSize, '\n');
-        return Data::IntBool {0, false};
-    }
-    return Data::IntBool {Number, true};
-}
+    Data::CharBool Input::GetLetter() const
+    {
+        std::wstring line = ReadLineRobust();
+        if (line.empty())
+            return Data::CharBool{ L'-', false };
 
+        wchar_t letter = FirstNonSpaceChar(line);
+        if (letter == L'\0')
+            return Data::CharBool{ L'-', false };
+
+        return Data::CharBool{ letter, true };
+    }
+
+    Data::IntBool Input::GetNumber() const
+    {
+        std::wstring line = ReadLineRobust();
+        if (line.empty())
+            return Data::IntBool{ 0, false };
+
+        try
+        {
+            size_t idx = 0;
+            int n = std::stoi(line, &idx, 10);
+
+            for (; idx < line.size(); ++idx)
+            {
+                if (!iswspace(line[idx]))
+                    return Data::IntBool{ 0, false };
+            }
+
+            return Data::IntBool{ n, true };
+        }
+        catch (...)
+        {
+            return Data::IntBool{ 0, false };
+        }
+    }
 }
