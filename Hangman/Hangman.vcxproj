@@ -20,15 +20,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>17.0</VCProjectVersion>
-    <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{09e2f49b-7cd5-4928-a0fe-9aeeb8ed048a}</ProjectGuid>
-    <RootNamespace>Hangman</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <SccProjectName>SAK</SccProjectName>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccProvider>SAK</SccProvider>
+  <VCProjectVersion>17.0</VCProjectVersion>
+  <Keyword>Win32Proj</Keyword>
+  <ProjectGuid>{09e2f49b-7cd5-4928-a0fe-9aeeb8ed048a}</ProjectGuid>
+  <RootNamespace>Hangman</RootNamespace>
+  <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
